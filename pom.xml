@@ -6,7 +6,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>elasticsearch</groupId>
-    <artifactId>elasticsearch</artifactId>
+    <artifactId>ElasticSearchApp</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <description>Sample CRUD application with elasticsearch and Spring3/Hibernate3/MySQL/C3P0 usage</description>
