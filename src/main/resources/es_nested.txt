@@ -1,0 +1,102 @@
+relationships:
+
+=========================================
+Nested
+=========================================
+
+mapping:
+
+    {
+        "contact": {
+            "properties": {
+                "@timestamp": {
+                    "type": "date",
+                    "format": "dateOptionalTime"
+                },
+                "@version": {
+                    "type": "string"
+                },                
+                "created": {
+                    "type": "date",
+                    "format": "dateOptionalTime"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "firstname": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "long"
+                },
+                "lastname": {
+                    "type": "string"
+                },
+                "references": {
+                    "type":"nested",
+                    "properties": {
+                        "name":{"type":"string"},
+                        "comments": {
+                             "type":"nested",
+                             "properties": {
+                                "comment": {
+                                    "type": "string"
+                                },
+                                "date": {
+                                    "type": "date",
+                                    "format": "dateOptionalTime"
+                                }
+                            }
+                        }
+                    }
+                },
+                "telephone": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+
+	Data:
+	
+	{
+
+    "firstname": "Vikrant",
+    "@timestamp": "2017-04-21T08:45:33.110Z",
+    "created": "2017-04-12T10:33:17.000Z",
+    "@version": "1",
+    "telephone": "2222222222",
+    "id": 2,
+    "email": "vsikka@qasource.com",
+    "lastname": "Sikka",
+    "references":{
+"name":"Vivek",
+"comments":{
+"date": "2013-12-22",
+"comment": "hello world"
+}
+}
+}
+
+
+Query:
+
+curl "localhost:9200/contacts/contact/_search" -d^
+"{^
+\"query\": {^
+\"nested\": {^
+\"path\": \"references.comments\",^
+\"query\": {^
+\"term\": {^
+\"references.comments.comment\": \"hello\"^
+}^
+}^
+}^
+}^
+}"
+
+
+==========================================
+Parent-Child
+==========================================
+

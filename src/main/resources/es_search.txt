@@ -1,0 +1,22 @@
+// Explain API
+
+curl -XPOST "localhost:9200/users/user/1/_explain?pretty=true" -d^
+"{^
+\"query\": {^
+\"match\": {^
+\"description\": \"table\"^
+}^
+}^
+}"
+
+curl -XPOST "localhost:9200/users/user/2/_explain?pretty=true" -d^
+"{^
+\"query\": {^
+\"match\": {^
+\"description\": \"table\"^
+}^
+}^
+}"
+
+===========================================
+
